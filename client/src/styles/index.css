@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply m-0 bg-paper text-ink font-body antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply m-0 font-display font-bold uppercase tracking-[0.2px];
+  }
+  p {
+    @apply m-0;
+  }
+  a {
+    @apply text-inherit no-underline;
+  }
+  button {
+    @apply font-body cursor-pointer;
+  }
+  input,
+  select,
+  textarea {
+    @apply font-body;
+  }
+
+  ::selection {
+    @apply bg-coral text-paper;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-coral-ink outline-offset-2;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .visually-hidden {
+    @apply absolute h-px w-px overflow-hidden whitespace-nowrap;
+    clip: rect(0 0 0 0);
+  }
+
+  /* Shared design-system primitives reused across many screens —
+     kept as @apply components so the underlying tokens change in one place. */
+  .container {
+    @apply mx-auto max-w-container px-8;
+  }
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.12em] text-coral-ink;
+  }
+  .card {
+    @apply rounded-lg border border-line bg-paper-raised shadow-card;
+  }
+  .stamp {
+    @apply inline-flex -rotate-2 items-center gap-1.5 rounded-full border-[1.5px] border-current px-2.5 py-[5px] font-mono text-[11px] uppercase tracking-[0.08em];
+  }
+  /* Content wrapper below the sticky Topbar — every dashboard & feed page uses it. */
+  .dashboard-page {
+    @apply px-4 pb-16 pt-7 sm:px-8;
+  }
+}
